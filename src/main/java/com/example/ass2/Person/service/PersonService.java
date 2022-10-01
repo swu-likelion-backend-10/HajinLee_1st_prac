@@ -76,4 +76,29 @@ public class PersonService {
     public void deletePerson(Long id){
         personRepository.deleteById(id);
     }
+
+    @Transactional
+    public List<PersonDto> searchPersons(String keyword) {
+        List<Person> personEntities = personRepository.findByNameContaining(keyword);
+        List<PersonDto> personDtoList = new ArrayList<>();
+
+        if (personEntities.isEmpty()) return personDtoList;
+
+        for (Person personEntity : personEntities) {
+            personDtoList.add(this.convertEntityToDto(personEntity));
+        }
+
+        return personDtoList;
+    }
+
+    private PersonDto convertEntityToDto(Person personEntity) {
+        return PersonDto.builder()
+                .id(personEntity.getId())
+                .name(personEntity.getName())
+                .age(personEntity.getAge())
+                .major(personEntity.getMajor())
+                .createdTime(personEntity.getCreatedTime())
+                .build();
+    }
+
 }

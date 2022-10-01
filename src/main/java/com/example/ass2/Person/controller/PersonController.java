@@ -63,4 +63,14 @@ public class PersonController {
         return "redirect:/";
     }
 
+    //검색
+    @GetMapping("/search")
+    public String search(@RequestParam(value="keyword") String keyword, Model model) {
+        List<PersonDto> personDtoList = personService.searchPersons(keyword);
+
+        model.addAttribute("personList", personDtoList);
+
+        return "person/list.html";
+    }
+
 }

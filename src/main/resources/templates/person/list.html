@@ -9,6 +9,13 @@
   <a th:href="@{/person}">인적사항 등록</a>
   <br>
 
+  <form action="/search" method="GET">
+      <div>
+          <input name="keyword" type="text" placeholder="검색어를 입력하세요">
+      </div>
+      <button>검색하기</button>
+  </form>
+
   <table>
       <thead>
       <tr>번호</tr>
