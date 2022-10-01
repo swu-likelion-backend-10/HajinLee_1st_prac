@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 @EnableJpaAuditing
 @PropertySource("classpath:/env.properties")
 public class Ass2Application {
-
 	public static void main(String[] args) {
 		SpringApplication.run(Ass2Application.class, args);
 	}

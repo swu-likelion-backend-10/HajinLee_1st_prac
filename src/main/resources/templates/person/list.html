@@ -7,5 +7,41 @@
 <body>
   <h1>메인화면</h1>
   <a th:href="@{/person}">인적사항 등록</a>
+  <br>
+
+  <table>
+      <thead>
+      <tr>번호</tr>
+      <tr>이름</tr>
+      <tr>나이</tr>
+      <tr>등록일</tr>
+      <tr>수정일</tr>
+      </thead>
+
+      <tbody>
+      <tr th:each="person: ${personList}">
+          <td>
+              <span th:text="${person.getId()}"></span>
+          </td>
+          <td>
+              <a th:href="@{'/person/' + ${person.getId()}}">
+                  <span th:text="${person.getName()}"></span>
+              </a>
+          </td>
+          <td>
+              <a>
+                  <span th:text="${person.getAge()}"></span>
+              </a>
+          </td>
+          <td>
+              <span th:text="${#temporals.format(person.getCreatedTime(), 'YYYY-MM-dd HH:mm')}"></span>
+          </td>
+          <td>
+              <span th:text="${#temporals.format(person.getModifiedTime(), 'YYYY-MM-dd HH:mm')}"></span>
+          </td>
+      </tr>
+      </tbody>
+
+  </table>
 </body>
 </html>

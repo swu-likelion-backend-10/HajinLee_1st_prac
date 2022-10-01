@@ -2,7 +2,11 @@ package com.example.ass2.Person.dto;
 
 import com.example.ass2.Person.domain.Person;
 import lombok.Builder;
+import lombok.Getter;
 
+import java.time.LocalDateTime;
+
+@Getter
 public class PersonDto {
     private Long id;
 
@@ -13,6 +17,10 @@ public class PersonDto {
     private String major;
 
     private String intro;
+
+    private LocalDateTime createdTime;
+
+    private LocalDateTime modifiedTime;
 
     public Person toEntity(){
         Person build = Person.builder()
@@ -26,11 +34,13 @@ public class PersonDto {
     }
 
     @Builder
-    public PersonDto(Long id, String name, int age, String major, String intro){
+    public PersonDto(Long id, String name, int age, String major, String intro, LocalDateTime createdTime, LocalDateTime modifiedTime){
         this.id=id;
         this.name=name;
         this.age=age;
         this.major=major;
         this.intro=intro;
+        this.createdTime=createdTime;
+        this.modifiedTime=modifiedTime;
     }
 }

@@ -1,5 +1,6 @@
 package com.example.ass2.Person.domain;
 
+import com.example.ass2.Person.dto.PersonDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,7 +16,7 @@ import javax.persistence.GenerationType;
 @Data
 @NoArgsConstructor
 @Entity
-public class Person {
+public class Person extends BaseTimeEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -44,5 +45,12 @@ public class Person {
         this.age = age;
         this.major = major;
         this.intro = intro;
+    }
+
+    public void update(PersonDto personDto){
+        this.name = personDto.getName();
+        this.age = personDto.getAge();
+        this.major = personDto.getMajor();
+        this.intro = personDto.getIntro();
     }
 }
