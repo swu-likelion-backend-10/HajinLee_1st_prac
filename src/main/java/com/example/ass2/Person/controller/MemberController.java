@@ -4,8 +4,11 @@ import com.example.ass2.Person.dto.MemberDto;
 import com.example.ass2.Person.service.MemberService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.List;
 
 @Controller
 @AllArgsConstructor
@@ -28,6 +31,14 @@ public class MemberController {
     @GetMapping("user/login")
     public String member(){
         return "users/login.html";
+    }
+
+    @GetMapping("user/admin")
+    public String admin(Model model) {
+        List<MemberDto> memberDtoList = memberService.getMemberlist();
+        model.addAttribute("memberList", memberDtoList);
+
+        return "users/admin.html";
     }
 
 }

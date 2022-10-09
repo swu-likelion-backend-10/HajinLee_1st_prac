@@ -12,6 +12,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+import static com.example.ass2.Person.domain.Role.ADMIN;
+
 @Configuration
 @EnableWebSecurity
 @AllArgsConstructor
@@ -22,6 +24,7 @@ public class SecurityConfig {
         http
                 .authorizeRequests()
                 .antMatchers("/post").authenticated()
+                .antMatchers("/user/admin").hasRole("ADMIN")
                 .antMatchers("/**").permitAll()
                 .and()
                 .formLogin()

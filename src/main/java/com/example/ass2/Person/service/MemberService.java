@@ -2,8 +2,10 @@ package com.example.ass2.Person.service;
 
 
 import com.example.ass2.Person.domain.Member;
+import com.example.ass2.Person.domain.Person;
 import com.example.ass2.Person.domain.Role;
 import com.example.ass2.Person.dto.MemberDto;
+import com.example.ass2.Person.dto.PersonDto;
 import com.example.ass2.Person.repository.MemberRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.User;
@@ -33,6 +35,24 @@ public class MemberService implements UserDetailsService {
 
 
         return memberRepository.save(memberDto.toEntity()).getId();
+    }
+
+    @Transactional
+    public List<MemberDto> getMemberlist(){
+        List<Member> members = memberRepository.findAll();
+        List<MemberDto> memberDtoList = new ArrayList<>();
+
+        for(Member member: members){
+            MemberDto memberDto = MemberDto.builder()
+                    .id(member.getId())
+                    .email(member.getEmail())
+                    .password(member.getPassword())
+                    .build();
+
+            memberDtoList.add(memberDto);
+        }
+
+        return memberDtoList;
     }
 
     @Override

@@ -1,10 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>admin page</title>
 </head>
 <body>
+<br>
+<h1>admin page</h1>
+<br>
+    <table>
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>email</th>
+            <th>password</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="member : ${memberList}">
+            <td>
+                <span th:text="${member.id}"></span>
+            </td>
+            <td>
+                <span th:text="${member.email}"></span>
+            </td>
+            <td>
+                <span th:text="${member.password}"></span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 
 </body>
 </html>
